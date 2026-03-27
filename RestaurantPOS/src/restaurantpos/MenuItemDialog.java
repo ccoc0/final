@@ -250,7 +250,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
             try {
                 // Create images folder if it doesn't exist
-                File imagesFolder = new File("src/restaurantpos/images");
+                File imagesFolder = new File("RestaurantPOS/src/restaurantpos/images");
                 if (!imagesFolder.exists()) {
                     imagesFolder.mkdirs();
                 }

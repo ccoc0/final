@@ -714,6 +714,7 @@ public class MainFrame extends javax.swing.JFrame {
         boolean imageLoaded = false;
         if (item.getImagePath() != null && !item.getImagePath().isEmpty()) {
             String imagePath = item.getImagePath();
+            System.out.println("Loading image for " + item.getName() + ": " + imagePath);
 
             // Try 1: Load from classpath resources (works in JAR and IDE)
             try {
@@ -723,33 +724,57 @@ public class MainFrame extends javax.swing.JFrame {
                     Image scaled = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                     imgLabel.setIcon(new ImageIcon(scaled));
                     imageLoaded = true;
+                    System.out.println("  -> Loaded from classpath: " + imgUrl);
                 }
             } catch (Exception e) {}
 
-            // Try 2: Load from src folder (works in IDE)
+            // Try 2: Load from src folder (NetBeans project structure)
             if (!imageLoaded) {
                 try {
                     File f = new File("src/restaurantpos/" + imagePath);
+                    System.out.println("  -> Trying: " + f.getAbsolutePath() + " (exists: " + f.exists() + ")");
                     if (f.exists()) {
                         ImageIcon icon = new ImageIcon(f.getAbsolutePath());
                         Image scaled = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         imgLabel.setIcon(new ImageIcon(scaled));
                         imageLoaded = true;
+                        System.out.println("  -> Loaded from src folder");
                     }
                 } catch (Exception e) {}
             }
 
-            // Try 3: Load from absolute path (user's custom path)
+            // Try 3: Load from project root (RestaurantPOS/src/...)
+            if (!imageLoaded) {
+                try {
+                    File f = new File("RestaurantPOS/src/restaurantpos/" + imagePath);
+                    System.out.println("  -> Trying: " + f.getAbsolutePath() + " (exists: " + f.exists() + ")");
+                    if (f.exists()) {
+                        ImageIcon icon = new ImageIcon(f.getAbsolutePath());
+                        Image scaled = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                        imgLabel.setIcon(new ImageIcon(scaled));
+                        imageLoaded = true;
+                        System.out.println("  -> Loaded from project root");
+                    }
+                } catch (Exception e) {}
+            }
+
+            // Try 4: Load from absolute path (user's custom path)
             if (!imageLoaded) {
                 try {
                     File f = new File(imagePath);
+                    System.out.println("  -> Trying absolute: " + f.getAbsolutePath() + " (exists: " + f.exists() + ")");
                     if (f.exists()) {
                         ImageIcon icon = new ImageIcon(imagePath);
                         Image scaled = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         imgLabel.setIcon(new ImageIcon(scaled));
                         imageLoaded = true;
+                        System.out.println("  -> Loaded from absolute path");
                     }
                 } catch (Exception e) {}
+            }
+
+            if (!imageLoaded) {
+                System.out.println("  -> FAILED to load image for: " + item.getName());
             }
         }
 
