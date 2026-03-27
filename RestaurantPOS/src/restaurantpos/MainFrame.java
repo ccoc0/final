@@ -12,7 +12,7 @@ import javax.swing.border.*;
 
 /**
  * MainFrame - Jollibee Menu System Main Window
- * 
+ *
  * @author JollibeePOS
  */
 public class MainFrame extends javax.swing.JFrame {
@@ -22,7 +22,7 @@ public class MainFrame extends javax.swing.JFrame {
     private static final Color JOLLIBEE_YELLOW = new Color(255, 204, 0);
     private static final Color JOLLIBEE_DARK_RED = new Color(153, 0, 0);
     private static final Color JOLLIBEE_LIGHT_YELLOW = new Color(255, 238, 153);
-    
+
     private DatabaseHandler dbHandler;
     private List<MenuItem> menuItems;
     private Map<Integer, Integer> cart; // MenuItem ID -> Quantity
@@ -67,6 +67,24 @@ public class MainFrame extends javax.swing.JFrame {
         categoryDessertsButton = new javax.swing.JButton();
         menuScrollPane = new javax.swing.JScrollPane();
         menuItemsPanel = new javax.swing.JPanel();
+        placeholder1 = new javax.swing.JPanel();
+        placeholderImg1 = new javax.swing.JLabel();
+        placeholderInfo1 = new javax.swing.JPanel();
+        placeholderName1 = new javax.swing.JLabel();
+        placeholderPrice1 = new javax.swing.JLabel();
+        placeholderBtn1 = new javax.swing.JButton();
+        placeholder2 = new javax.swing.JPanel();
+        placeholderImg2 = new javax.swing.JLabel();
+        placeholderInfo2 = new javax.swing.JPanel();
+        placeholderName2 = new javax.swing.JLabel();
+        placeholderPrice2 = new javax.swing.JLabel();
+        placeholderBtn2 = new javax.swing.JButton();
+        placeholder3 = new javax.swing.JPanel();
+        placeholderImg3 = new javax.swing.JLabel();
+        placeholderInfo3 = new javax.swing.JPanel();
+        placeholderName3 = new javax.swing.JLabel();
+        placeholderPrice3 = new javax.swing.JLabel();
+        placeholderBtn3 = new javax.swing.JButton();
         cartPanel = new javax.swing.JPanel();
         cartHeaderPanel = new javax.swing.JPanel();
         cartTitleLabel = new javax.swing.JLabel();
@@ -80,7 +98,7 @@ public class MainFrame extends javax.swing.JFrame {
         buyerNameLabel = new javax.swing.JLabel();
         buyerNameField = new javax.swing.JTextField();
         paymentMethodLabel = new javax.swing.JLabel();
-        paymentMethodCombo = new javax.swing.JComboBox();
+        paymentMethodCombo = new javax.swing.JComboBox<>();
         buttonsPanel = new javax.swing.JPanel();
         clearCartButton = new javax.swing.JButton();
         checkoutButton = new javax.swing.JButton();
@@ -101,13 +119,13 @@ public class MainFrame extends javax.swing.JFrame {
         titlePanel.setBackground(new java.awt.Color(204, 0, 0));
         titlePanel.setLayout(new javax.swing.BoxLayout(titlePanel, javax.swing.BoxLayout.Y_AXIS));
 
-        titleLabel.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Arial", 1, 28));
         titleLabel.setForeground(new java.awt.Color(255, 204, 0));
         titleLabel.setText("JOLLIBEE MENU SYSTEM");
         titleLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 20, 5, 10));
         titlePanel.add(titleLabel);
 
-        taglineLabel.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
+        taglineLabel.setFont(new java.awt.Font("Arial", 2, 12));
         taglineLabel.setForeground(new java.awt.Color(255, 255, 255));
         taglineLabel.setText("Langhap-Sarap! Philippines' #1 Fast Food Chain");
         taglineLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 20, 10, 10));
@@ -119,8 +137,8 @@ public class MainFrame extends javax.swing.JFrame {
         adminPanel.setPreferredSize(new java.awt.Dimension(150, 80));
         adminPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 25));
 
+        adminButton.setFont(new java.awt.Font("Arial", 1, 14));
         adminButton.setText("Admin Panel");
-        adminButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         adminButton.setBackground(new java.awt.Color(255, 204, 0));
         adminButton.setForeground(new java.awt.Color(153, 0, 0));
         adminButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 25, 10, 25));
@@ -146,8 +164,8 @@ public class MainFrame extends javax.swing.JFrame {
         categoryPanel.setPreferredSize(new java.awt.Dimension(700, 50));
         categoryPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 5));
 
+        categoryAllButton.setFont(new java.awt.Font("Arial", 1, 12));
         categoryAllButton.setText("All");
-        categoryAllButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         categoryAllButton.setBackground(new java.awt.Color(204, 0, 0));
         categoryAllButton.setForeground(new java.awt.Color(255, 255, 255));
         categoryAllButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 20, 8, 20));
@@ -159,9 +177,9 @@ public class MainFrame extends javax.swing.JFrame {
         });
         categoryPanel.add(categoryAllButton);
 
+        categoryBurgersButton.setFont(new java.awt.Font("Arial", 1, 12));
         categoryBurgersButton.setText("Burgers");
-        categoryBurgersButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        categoryBurgersButton.setBackground(new java.awt.Color(255, 255, 204));
+        categoryBurgersButton.setBackground(new java.awt.Color(255, 238, 153));
         categoryBurgersButton.setForeground(new java.awt.Color(153, 0, 0));
         categoryBurgersButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 15, 8, 15));
         categoryBurgersButton.setFocusPainted(false);
@@ -172,9 +190,9 @@ public class MainFrame extends javax.swing.JFrame {
         });
         categoryPanel.add(categoryBurgersButton);
 
+        categoryChickenButton.setFont(new java.awt.Font("Arial", 1, 12));
         categoryChickenButton.setText("Chicken");
-        categoryChickenButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        categoryChickenButton.setBackground(new java.awt.Color(255, 255, 204));
+        categoryChickenButton.setBackground(new java.awt.Color(255, 238, 153));
         categoryChickenButton.setForeground(new java.awt.Color(153, 0, 0));
         categoryChickenButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 15, 8, 15));
         categoryChickenButton.setFocusPainted(false);
@@ -185,9 +203,9 @@ public class MainFrame extends javax.swing.JFrame {
         });
         categoryPanel.add(categoryChickenButton);
 
+        categoryPastaButton.setFont(new java.awt.Font("Arial", 1, 12));
         categoryPastaButton.setText("Pasta");
-        categoryPastaButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        categoryPastaButton.setBackground(new java.awt.Color(255, 255, 204));
+        categoryPastaButton.setBackground(new java.awt.Color(255, 238, 153));
         categoryPastaButton.setForeground(new java.awt.Color(153, 0, 0));
         categoryPastaButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 15, 8, 15));
         categoryPastaButton.setFocusPainted(false);
@@ -198,9 +216,9 @@ public class MainFrame extends javax.swing.JFrame {
         });
         categoryPanel.add(categoryPastaButton);
 
+        categoryRiceMealsButton.setFont(new java.awt.Font("Arial", 1, 12));
         categoryRiceMealsButton.setText("Rice Meals");
-        categoryRiceMealsButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        categoryRiceMealsButton.setBackground(new java.awt.Color(255, 255, 204));
+        categoryRiceMealsButton.setBackground(new java.awt.Color(255, 238, 153));
         categoryRiceMealsButton.setForeground(new java.awt.Color(153, 0, 0));
         categoryRiceMealsButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 15, 8, 15));
         categoryRiceMealsButton.setFocusPainted(false);
@@ -211,9 +229,9 @@ public class MainFrame extends javax.swing.JFrame {
         });
         categoryPanel.add(categoryRiceMealsButton);
 
+        categoryDrinksButton.setFont(new java.awt.Font("Arial", 1, 12));
         categoryDrinksButton.setText("Drinks");
-        categoryDrinksButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        categoryDrinksButton.setBackground(new java.awt.Color(255, 255, 204));
+        categoryDrinksButton.setBackground(new java.awt.Color(255, 238, 153));
         categoryDrinksButton.setForeground(new java.awt.Color(153, 0, 0));
         categoryDrinksButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 15, 8, 15));
         categoryDrinksButton.setFocusPainted(false);
@@ -224,9 +242,9 @@ public class MainFrame extends javax.swing.JFrame {
         });
         categoryPanel.add(categoryDrinksButton);
 
+        categoryDessertsButton.setFont(new java.awt.Font("Arial", 1, 12));
         categoryDessertsButton.setText("Desserts");
-        categoryDessertsButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        categoryDessertsButton.setBackground(new java.awt.Color(255, 255, 204));
+        categoryDessertsButton.setBackground(new java.awt.Color(255, 238, 153));
         categoryDessertsButton.setForeground(new java.awt.Color(153, 0, 0));
         categoryDessertsButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 15, 8, 15));
         categoryDessertsButton.setFocusPainted(false);
@@ -239,11 +257,26 @@ public class MainFrame extends javax.swing.JFrame {
 
         menuPanel.add(categoryPanel, java.awt.BorderLayout.NORTH);
 
-        menuScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "MENU ITEMS (Loaded from Database)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14), new java.awt.Color(153, 0, 0))); // NOI18N
+        menuScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(
+                javax.swing.BorderFactory.createTitledBorder(""),
+                "MENU ITEMS (Loaded from Database)",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Arial", 1, 14),
+                new java.awt.Color(153, 0, 0)));
 
         menuItemsPanel.setBackground(new java.awt.Color(255, 250, 240));
-        menuItemsPanel.setPreferredSize(new java.awt.Dimension(680, 500));
         menuItemsPanel.setLayout(new java.awt.GridLayout(0, 3, 10, 10));
+
+        // Placeholder panels for design view
+        createPlaceholderPanel(placeholder1, placeholderImg1, placeholderInfo1, placeholderName1, placeholderPrice1, placeholderBtn1);
+        createPlaceholderPanel(placeholder2, placeholderImg2, placeholderInfo2, placeholderName2, placeholderPrice2, placeholderBtn2);
+        createPlaceholderPanel(placeholder3, placeholderImg3, placeholderInfo3, placeholderName3, placeholderPrice3, placeholderBtn3);
+
+        menuItemsPanel.add(placeholder1);
+        menuItemsPanel.add(placeholder2);
+        menuItemsPanel.add(placeholder3);
+
         menuScrollPane.setViewportView(menuItemsPanel);
 
         menuPanel.add(menuScrollPane, java.awt.BorderLayout.CENTER);
@@ -257,7 +290,7 @@ public class MainFrame extends javax.swing.JFrame {
         cartHeaderPanel.setBackground(new java.awt.Color(255, 204, 0));
         cartHeaderPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        cartTitleLabel.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        cartTitleLabel.setFont(new java.awt.Font("Arial", 1, 16));
         cartTitleLabel.setForeground(new java.awt.Color(153, 0, 0));
         cartTitleLabel.setText("YOUR ORDER");
         cartHeaderPanel.add(cartTitleLabel);
@@ -265,24 +298,10 @@ public class MainFrame extends javax.swing.JFrame {
         cartPanel.add(cartHeaderPanel, java.awt.BorderLayout.NORTH);
 
         cartTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Item", "Qty", "Price", "Subtotal"
-            }
+                new Object [][] {},
+                new String [] {"Item", "Qty", "Price", "Subtotal"}
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
+            boolean[] canEdit = new boolean [] {false, false, false, false};
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
@@ -299,12 +318,12 @@ public class MainFrame extends javax.swing.JFrame {
         totalPanel.setPreferredSize(new java.awt.Dimension(380, 50));
         totalPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        totalLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        totalLabel.setFont(new java.awt.Font("Arial", 1, 18));
         totalLabel.setForeground(new java.awt.Color(153, 0, 0));
         totalLabel.setText("TOTAL:");
         totalPanel.add(totalLabel);
 
-        totalValueLabel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        totalValueLabel.setFont(new java.awt.Font("Arial", 1, 24));
         totalValueLabel.setForeground(new java.awt.Color(204, 0, 0));
         totalValueLabel.setText("P0.00");
         totalPanel.add(totalValueLabel);
@@ -312,19 +331,25 @@ public class MainFrame extends javax.swing.JFrame {
         cartBottomPanel.add(totalPanel);
 
         buyerInfoPanel.setBackground(new java.awt.Color(255, 255, 255));
-        buyerInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buyer Information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(153, 0, 0))); // NOI18N
+        buyerInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(
+                javax.swing.BorderFactory.createTitledBorder(""),
+                "Buyer Information",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Arial", 1, 12),
+                new java.awt.Color(153, 0, 0)));
         buyerInfoPanel.setLayout(new java.awt.GridLayout(2, 2));
 
-        buyerNameLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buyerNameLabel.setFont(new java.awt.Font("Arial", 1, 12));
         buyerNameLabel.setText("Buyer Name:");
         buyerInfoPanel.add(buyerNameLabel);
         buyerInfoPanel.add(buyerNameField);
 
-        paymentMethodLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        paymentMethodLabel.setFont(new java.awt.Font("Arial", 1, 12));
         paymentMethodLabel.setText("Payment Method:");
         buyerInfoPanel.add(paymentMethodLabel);
 
-        paymentMethodCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cash", "GCash", "Maya", "Credit Card", "Debit Card" }));
+        paymentMethodCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Cash", "GCash", "Maya", "Credit Card", "Debit Card"}));
         buyerInfoPanel.add(paymentMethodCombo);
 
         cartBottomPanel.add(buyerInfoPanel);
@@ -333,7 +358,7 @@ public class MainFrame extends javax.swing.JFrame {
         buttonsPanel.setPreferredSize(new java.awt.Dimension(380, 60));
         buttonsPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 10));
 
-        clearCartButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        clearCartButton.setFont(new java.awt.Font("Arial", 1, 14));
         clearCartButton.setText("Clear Cart");
         clearCartButton.setBackground(new java.awt.Color(102, 102, 102));
         clearCartButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -345,7 +370,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         buttonsPanel.add(clearCartButton);
 
-        checkoutButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        checkoutButton.setFont(new java.awt.Font("Arial", 1, 14));
         checkoutButton.setText("Checkout");
         checkoutButton.setBackground(new java.awt.Color(255, 204, 0));
         checkoutButton.setForeground(new java.awt.Color(153, 0, 0));
@@ -369,14 +394,14 @@ public class MainFrame extends javax.swing.JFrame {
         statusBar.setPreferredSize(new java.awt.Dimension(1180, 30));
         statusBar.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        statusLabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        statusLabel.setFont(new java.awt.Font("Arial", 0, 12));
         statusLabel.setForeground(new java.awt.Color(255, 255, 255));
         statusLabel.setText("Ready | Today's Orders: 0 | Today's Sales: P0.00");
         statusBar.add(statusLabel);
 
         mainPanel.add(statusBar, java.awt.BorderLayout.SOUTH);
 
-        getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
+        add(mainPanel);
 
         pack();
         setLocationRelativeTo(null);
@@ -387,7 +412,7 @@ public class MainFrame extends javax.swing.JFrame {
             // Create logo label
             JLabel logoLabel = new JLabel();
             logoLabel.setPreferredSize(new java.awt.Dimension(80, 80));
-            
+
             // Try loading jollibee_logo.png from classpath
             java.net.URL logoUrl = getClass().getResource("/images/jollibee_logo.png");
             if (logoUrl != null) {
@@ -403,26 +428,26 @@ public class MainFrame extends javax.swing.JFrame {
                     logoLabel.setIcon(new ImageIcon(scaledLogo));
                 }
             }
-            
+
             // Create a new panel to hold logo and titlePanel side by side
             JPanel newWestPanel = new JPanel(new BorderLayout());
             newWestPanel.setBackground(new java.awt.Color(204, 0, 0));
-            
+
             // Add logo on the left
             JPanel logoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
             logoPanel.setBackground(new java.awt.Color(204, 0, 0));
             logoPanel.add(logoLabel);
             newWestPanel.add(logoPanel, BorderLayout.WEST);
-            
+
             // Add titlePanel next to it
             newWestPanel.add(titlePanel, BorderLayout.CENTER);
-            
+
             // Replace the header's WEST component
             headerPanel.remove(titlePanel);
             headerPanel.add(newWestPanel, BorderLayout.WEST);
             headerPanel.revalidate();
             headerPanel.repaint();
-            
+
         } catch (Exception e) {
             // If logo fails to load, just continue without it
             System.out.println("Could not load logo: " + e.getMessage());
@@ -469,7 +494,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
         AdminLoginDialog loginDialog = new AdminLoginDialog(this, true);
         loginDialog.setVisible(true);
-        
+
         // Check if login was successful before opening dashboard
         if (loginDialog.isAuthenticated()) {
             AdminDashboard dashboard = new AdminDashboard(this, true);
@@ -529,16 +554,16 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Your cart is empty!", "Empty Cart", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
         String buyerName = buyerNameField.getText().trim();
         if (buyerName.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter buyer name!", "Missing Information", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
         String paymentMethod = (String) paymentMethodCombo.getSelectedItem();
         double total = calculateTotal();
-        
+
         // Save to database
         StringBuilder itemsBuilder = new StringBuilder();
         for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
@@ -548,14 +573,14 @@ public class MainFrame extends javax.swing.JFrame {
                 itemsBuilder.append(item.getName()).append(" x").append(entry.getValue());
             }
         }
-        
+
         String orderDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         BuyerHistory history = new BuyerHistory(0, buyerName, itemsBuilder.toString(), total, orderDate, paymentMethod, "Completed");
-        
+
         if (dbHandler.addBuyerHistory(history)) {
-            JOptionPane.showMessageDialog(this, 
-                String.format("Order placed successfully!\nTotal: P%.2f\nPayment: %s", total, paymentMethod),
-                "Order Complete", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    String.format("Order placed successfully!\nTotal: P%.2f\nPayment: %s", total, paymentMethod),
+                    "Order Complete", JOptionPane.INFORMATION_MESSAGE);
             cart.clear();
             buyerNameField.setText("");
             updateCartTable();
@@ -566,44 +591,62 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_checkoutButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adminButton;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel headerPanel;
+    private javax.swing.JPanel titlePanel;
+    private javax.swing.JLabel titleLabel;
+    private javax.swing.JLabel taglineLabel;
     private javax.swing.JPanel adminPanel;
-    private javax.swing.JPanel buttonsPanel;
-    private javax.swing.JPanel buyerInfoPanel;
-    private javax.swing.JTextField buyerNameField;
-    private javax.swing.JLabel buyerNameLabel;
-    private javax.swing.JPanel cartBottomPanel;
-    private javax.swing.JPanel cartHeaderPanel;
-    private javax.swing.JPanel cartPanel;
-    private javax.swing.JScrollPane cartScrollPane;
-    private javax.swing.JTable cartTable;
-    private javax.swing.JLabel cartTitleLabel;
+    private javax.swing.JButton adminButton;
+    private javax.swing.JPanel centerPanel;
+    private javax.swing.JPanel menuPanel;
+    private javax.swing.JPanel categoryPanel;
     private javax.swing.JButton categoryAllButton;
     private javax.swing.JButton categoryBurgersButton;
     private javax.swing.JButton categoryChickenButton;
-    private javax.swing.JButton categoryDessertsButton;
-    private javax.swing.JButton categoryDrinksButton;
-    private javax.swing.JPanel categoryPanel;
     private javax.swing.JButton categoryPastaButton;
     private javax.swing.JButton categoryRiceMealsButton;
-    private javax.swing.JPanel centerPanel;
-    private javax.swing.JButton checkoutButton;
-    private javax.swing.JButton clearCartButton;
-    private javax.swing.JPanel headerPanel;
-    private javax.swing.JPanel mainPanel;
-    private javax.swing.JPanel menuItemsPanel;
-    private javax.swing.JPanel menuPanel;
+    private javax.swing.JButton categoryDrinksButton;
+    private javax.swing.JButton categoryDessertsButton;
     private javax.swing.JScrollPane menuScrollPane;
-    private javax.swing.JComboBox paymentMethodCombo;
+    private javax.swing.JPanel menuItemsPanel;
+    private javax.swing.JPanel placeholder1;
+    private javax.swing.JLabel placeholderImg1;
+    private javax.swing.JPanel placeholderInfo1;
+    private javax.swing.JLabel placeholderName1;
+    private javax.swing.JLabel placeholderPrice1;
+    private javax.swing.JButton placeholderBtn1;
+    private javax.swing.JPanel placeholder2;
+    private javax.swing.JLabel placeholderImg2;
+    private javax.swing.JPanel placeholderInfo2;
+    private javax.swing.JLabel placeholderName2;
+    private javax.swing.JLabel placeholderPrice2;
+    private javax.swing.JButton placeholderBtn2;
+    private javax.swing.JPanel placeholder3;
+    private javax.swing.JLabel placeholderImg3;
+    private javax.swing.JPanel placeholderInfo3;
+    private javax.swing.JLabel placeholderName3;
+    private javax.swing.JLabel placeholderPrice3;
+    private javax.swing.JButton placeholderBtn3;
+    private javax.swing.JPanel cartPanel;
+    private javax.swing.JPanel cartHeaderPanel;
+    private javax.swing.JLabel cartTitleLabel;
+    private javax.swing.JScrollPane cartScrollPane;
+    private javax.swing.JTable cartTable;
+    private javax.swing.JPanel cartBottomPanel;
+    private javax.swing.JPanel totalPanel;
+    private javax.swing.JLabel totalLabel;
+    private javax.swing.JLabel totalValueLabel;
+    private javax.swing.JPanel buyerInfoPanel;
+    private javax.swing.JLabel buyerNameLabel;
+    private javax.swing.JTextField buyerNameField;
     private javax.swing.JLabel paymentMethodLabel;
+    private javax.swing.JComboBox<String> paymentMethodCombo;
+    private javax.swing.JPanel buttonsPanel;
+    private javax.swing.JButton clearCartButton;
+    private javax.swing.JButton checkoutButton;
     private javax.swing.JPanel statusBar;
     private javax.swing.JLabel statusLabel;
-    private javax.swing.JLabel taglineLabel;
-    private javax.swing.JLabel titleLabel;
-    private javax.swing.JPanel titlePanel;
-    private javax.swing.JLabel totalLabel;
-    private javax.swing.JPanel totalPanel;
-    private javax.swing.JLabel totalValueLabel;
     // End of variables declaration//GEN-END:variables
 
     private void loadMenuItems() {
@@ -619,10 +662,10 @@ public class MainFrame extends javax.swing.JFrame {
     private void displayMenuItems() {
         // Remove all existing panels including placeholders
         menuItemsPanel.removeAll();
-        
+
         // Reset layout
         menuItemsPanel.setLayout(new java.awt.GridLayout(0, 3, 10, 10));
-        
+
         if (menuItems == null || menuItems.isEmpty()) {
             // Show a message if no items found
             JLabel noItemsLabel = new JLabel("No menu items found. Check database connection.", SwingConstants.CENTER);
@@ -636,17 +679,17 @@ public class MainFrame extends javax.swing.JFrame {
                 JPanel itemPanel = createMenuItemPanel(item);
                 menuItemsPanel.add(itemPanel);
             }
-            
+
             // Calculate proper height based on number of items (3 per row)
             int rows = (int) Math.ceil(menuItems.size() / 3.0);
             int itemHeight = 190; // each item is 180px + 10px gap
             int totalHeight = rows * itemHeight + 20;
-            
+
             // Set the preferred size so scrollpane works correctly
             menuItemsPanel.setPreferredSize(new Dimension(680, totalHeight));
             System.out.println("Displayed " + menuItems.size() + " items in " + rows + " rows, height=" + totalHeight);
         }
-        
+
         // Force layout update
         menuItemsPanel.revalidate();
         menuItemsPanel.repaint();
@@ -666,17 +709,51 @@ public class MainFrame extends javax.swing.JFrame {
         imgLabel.setHorizontalAlignment(SwingConstants.CENTER);
         imgLabel.setOpaque(true);
         imgLabel.setPreferredSize(new Dimension(200, 100));
-        
-        // Try to load image
+
+        // Try to load image from multiple locations
+        boolean imageLoaded = false;
         if (item.getImagePath() != null && !item.getImagePath().isEmpty()) {
+            String imagePath = item.getImagePath();
+
+            // Try 1: Load from classpath resources (works in JAR and IDE)
             try {
-                ImageIcon icon = new ImageIcon(item.getImagePath());
-                Image scaled = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imgLabel.setIcon(new ImageIcon(scaled));
-            } catch (Exception e) {
-                imgLabel.setText("[Image]");
+                java.net.URL imgUrl = getClass().getResource("/" + imagePath);
+                if (imgUrl != null) {
+                    ImageIcon icon = new ImageIcon(imgUrl);
+                    Image scaled = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                    imgLabel.setIcon(new ImageIcon(scaled));
+                    imageLoaded = true;
+                }
+            } catch (Exception e) {}
+
+            // Try 2: Load from src folder (works in IDE)
+            if (!imageLoaded) {
+                try {
+                    File f = new File("src/restaurantpos/" + imagePath);
+                    if (f.exists()) {
+                        ImageIcon icon = new ImageIcon(f.getAbsolutePath());
+                        Image scaled = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                        imgLabel.setIcon(new ImageIcon(scaled));
+                        imageLoaded = true;
+                    }
+                } catch (Exception e) {}
             }
-        } else {
+
+            // Try 3: Load from absolute path (user's custom path)
+            if (!imageLoaded) {
+                try {
+                    File f = new File(imagePath);
+                    if (f.exists()) {
+                        ImageIcon icon = new ImageIcon(imagePath);
+                        Image scaled = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                        imgLabel.setIcon(new ImageIcon(scaled));
+                        imageLoaded = true;
+                    }
+                } catch (Exception e) {}
+            }
+        }
+
+        if (!imageLoaded) {
             imgLabel.setText("[Image]");
         }
         panel.add(imgLabel, BorderLayout.NORTH);
@@ -714,22 +791,22 @@ public class MainFrame extends javax.swing.JFrame {
     private void updateCartTable() {
         DefaultTableModel model = (DefaultTableModel) cartTable.getModel();
         model.setRowCount(0);
-        
+
         double total = 0;
         for (Map.Entry<Integer, Integer> entry : cart.entrySet()) {
             MenuItem item = getMenuItemById(entry.getKey());
             if (item != null) {
                 double subtotal = item.getPrice() * entry.getValue();
                 model.addRow(new Object[] {
-                    item.getName(),
-                    entry.getValue(),
-                    String.format("P%.2f", item.getPrice()),
-                    String.format("P%.2f", subtotal)
+                        item.getName(),
+                        entry.getValue(),
+                        String.format("P%.2f", item.getPrice()),
+                        String.format("P%.2f", subtotal)
                 });
                 total += subtotal;
             }
         }
-        
+
         totalValueLabel.setText(String.format("P%.2f", total));
     }
 
@@ -752,10 +829,10 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void updateCategoryButtons() {
-        JButton[] buttons = {categoryAllButton, categoryBurgersButton, categoryChickenButton, 
-                            categoryPastaButton, categoryRiceMealsButton, categoryDrinksButton, categoryDessertsButton};
+        JButton[] buttons = {categoryAllButton, categoryBurgersButton, categoryChickenButton,
+                categoryPastaButton, categoryRiceMealsButton, categoryDrinksButton, categoryDessertsButton};
         String[] categories = {"All", "Burgers", "Chicken", "Pasta", "Rice Meals", "Drinks", "Desserts"};
-        
+
         for (int i = 0; i < buttons.length; i++) {
             if (categories[i].equals(currentCategory)) {
                 buttons[i].setBackground(JOLLIBEE_RED);

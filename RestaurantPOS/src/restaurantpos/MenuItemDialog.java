@@ -9,7 +9,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * MenuItemDialog - Dialog for adding and editing menu items
- * 
+ *
  * @author JollibeePOS
  */
 public class MenuItemDialog extends javax.swing.JDialog {
@@ -27,7 +27,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        
+
         mainPanel = new javax.swing.JPanel();
         headerPanel = new javax.swing.JPanel();
         headerLabel = new javax.swing.JLabel();
@@ -186,8 +186,8 @@ public class MenuItemDialog extends javax.swing.JDialog {
         imagePreviewLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imagePreviewLabel.setText("🖼️");
         imagePreviewLabel.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(JOLLIBEE_YELLOW, 2),
-            BorderFactory.createEmptyBorder(10, 10, 10, 10)
+                BorderFactory.createLineBorder(JOLLIBEE_YELLOW, 2),
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)
         ));
         imagePreviewLabel.setPreferredSize(new java.awt.Dimension(100, 100));
         gbc.gridx = 0;
@@ -242,22 +242,62 @@ public class MenuItemDialog extends javax.swing.JDialog {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Select Menu Item Image");
         fileChooser.setFileFilter(new FileNameExtensionFilter(
-            "Image Files (*.jpg, *.jpeg, *.png, *.gif)", "jpg", "jpeg", "png", "gif"));
-        
+                "Image Files (*.jpg, *.jpeg, *.png, *.gif)", "jpg", "jpeg", "png", "gif"));
+
         int result = fileChooser.showOpenDialog(this);
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            selectedImagePath = selectedFile.getAbsolutePath();
-            imagePathField.setText(selectedFile.getName());
-            
+
             try {
-                ImageIcon icon = new ImageIcon(selectedImagePath);
+                // Create images folder if it doesn't exist
+                File imagesFolder = new File("src/restaurantpos/images");
+                if (!imagesFolder.exists()) {
+                    imagesFolder.mkdirs();
+                }
+
+                // Generate unique filename
+                String fileName = selectedFile.getName();
+                // Remove any path info, just keep filename
+                if (fileName.contains("\\")) {
+                    fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+                }
+                if (fileName.contains("/")) {
+                    fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
+                }
+
+                // Destination file in images folder
+                File destFile = new File(imagesFolder, fileName);
+
+                // Copy the file to images folder
+                java.nio.file.Files.copy(
+                        selectedFile.toPath(),
+                        destFile.toPath(),
+                        java.nio.file.StandardCopyOption.REPLACE_EXISTING
+                );
+
+                // Save only the relative path
+                selectedImagePath = "images/" + fileName;
+                imagePathField.setText(fileName);
+
+                // Show preview
+                ImageIcon icon = new ImageIcon(destFile.getAbsolutePath());
                 Image img = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                 imagePreviewLabel.setText("");
                 imagePreviewLabel.setIcon(new ImageIcon(img));
+
+                JOptionPane.showMessageDialog(this,
+                        "Image copied to project folder!\nPath saved: images/" + fileName,
+                        "Image Added",
+                        JOptionPane.INFORMATION_MESSAGE);
+
             } catch (Exception e) {
-                imagePreviewLabel.setText("🖼️");
-                imagePreviewLabel.setIcon(null);
+                JOptionPane.showMessageDialog(this,
+                        "Error copying image: " + e.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                // Fallback to absolute path
+                selectedImagePath = selectedFile.getAbsolutePath();
+                imagePathField.setText(selectedFile.getName());
             }
         }
     }//GEN-LAST:event_browseImageButtonActionPerformed
@@ -267,69 +307,69 @@ public class MenuItemDialog extends javax.swing.JDialog {
         String category = (String) categoryCombo.getSelectedItem();
         String priceText = priceField.getText().trim();
         String description = descriptionArea.getText().trim();
-        
+
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                "Please enter the item name!",
-                "Validation Error",
-                JOptionPane.WARNING_MESSAGE);
+                    "Please enter the item name!",
+                    "Validation Error",
+                    JOptionPane.WARNING_MESSAGE);
             nameField.requestFocus();
             return;
         }
-        
+
         if (priceText.isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                "Please enter the price!",
-                "Validation Error",
-                JOptionPane.WARNING_MESSAGE);
+                    "Please enter the price!",
+                    "Validation Error",
+                    JOptionPane.WARNING_MESSAGE);
             priceField.requestFocus();
             return;
         }
-        
+
         double price;
         try {
             price = Double.parseDouble(priceText);
             if (price <= 0) throw new NumberFormatException();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
-                "Please enter a valid price!",
-                "Validation Error",
-                JOptionPane.WARNING_MESSAGE);
+                    "Please enter a valid price!",
+                    "Validation Error",
+                    JOptionPane.WARNING_MESSAGE);
             priceField.requestFocus();
             return;
         }
-        
+
         if (menuItem == null) {
             menuItem = new MenuItem();
         }
-        
+
         menuItem.setName(name);
         menuItem.setCategory(category);
         menuItem.setPrice(price);
         menuItem.setDescription(description);
         menuItem.setImagePath(selectedImagePath);
-        
+
         DatabaseHandler dbHandler = DatabaseHandler.getInstance();
         boolean success;
-        
+
         if (menuItem.getId() == 0) {
             success = dbHandler.addMenuItem(menuItem);
         } else {
             success = dbHandler.updateMenuItem(menuItem);
         }
-        
+
         if (success) {
             saved = true;
             JOptionPane.showMessageDialog(this,
-                "Menu item saved successfully!",
-                "Success",
-                JOptionPane.INFORMATION_MESSAGE);
+                    "Menu item saved successfully!",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
             dispose();
         } else {
             JOptionPane.showMessageDialog(this,
-                "Failed to save menu item!",
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
+                    "Failed to save menu item!",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_saveButtonActionPerformed
 
@@ -365,9 +405,9 @@ public class MenuItemDialog extends javax.swing.JDialog {
         super(parent, modal);
         this.menuItem = item;
         this.selectedImagePath = item != null ? item.getImagePath() : null;
-        
+
         initComponents();
-        
+
         if (item != null) {
             nameField.setText(item.getName());
             categoryCombo.setSelectedItem(item.getCategory());
@@ -386,11 +426,11 @@ public class MenuItemDialog extends javax.swing.JDialog {
             }
         }
     }
-    
+
     public boolean isSaved() {
         return saved;
     }
-    
+
     public MenuItem getMenuItem() {
         return menuItem;
     }
