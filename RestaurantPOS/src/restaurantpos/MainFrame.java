@@ -413,20 +413,70 @@ public class MainFrame extends javax.swing.JFrame {
             JLabel logoLabel = new JLabel();
             logoLabel.setPreferredSize(new java.awt.Dimension(80, 80));
 
-            // Try loading jollibee_logo.png from classpath
-            java.net.URL logoUrl = getClass().getResource("/images/jollibee_logo.png");
-            if (logoUrl != null) {
-                ImageIcon logoIcon = new ImageIcon(logoUrl);
-                Image scaledLogo = logoIcon.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH);
-                logoLabel.setIcon(new ImageIcon(scaledLogo));
-            } else {
-                // Try loading from file system
+            boolean logoLoaded = false;
+
+            // Try 1: Load from classpath (works when compiled)
+            try {
+                java.net.URL logoUrl = getClass().getResource("/images/jollibee_logo.png");
+                if (logoUrl != null) {
+                    ImageIcon logoIcon = new ImageIcon(logoUrl);
+                    Image scaledLogo = logoIcon.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH);
+                    logoLabel.setIcon(new ImageIcon(scaledLogo));
+                    logoLoaded = true;
+                    System.out.println("Logo loaded from classpath");
+                }
+            } catch (Exception e) {}
+
+            // Try 2: Load from src folder (NetBeans structure)
+            if (!logoLoaded) {
                 File f = new File("src/restaurantpos/images/jollibee_logo.png");
+                System.out.println("Trying NetBeans path: " + f.getAbsolutePath() + " (exists: " + f.exists() + ")");
                 if (f.exists()) {
                     ImageIcon logoIcon = new ImageIcon(f.getAbsolutePath());
                     Image scaledLogo = logoIcon.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH);
                     logoLabel.setIcon(new ImageIcon(scaledLogo));
+                    logoLoaded = true;
+                    System.out.println("Logo loaded from NetBeans path");
                 }
+            }
+
+            // Try 3: Load from project root (IntelliJ structure)
+            if (!logoLoaded) {
+                File f = new File("RestaurantPOS/src/restaurantpos/images/jollibee_logo.png");
+                System.out.println("Trying IntelliJ path: " + f.getAbsolutePath() + " (exists: " + f.exists() + ")");
+                if (f.exists()) {
+                    ImageIcon logoIcon = new ImageIcon(f.getAbsolutePath());
+                    Image scaledLogo = logoIcon.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH);
+                    logoLabel.setIcon(new ImageIcon(scaledLogo));
+                    logoLoaded = true;
+                    System.out.println("Logo loaded from IntelliJ path");
+                }
+            }
+
+            // Try 4: Try without project folder name
+            if (!logoLoaded) {
+                File f = new File("src/restaurantpos/images/jollibee_logo.png");
+                if (!f.exists()) {
+                    // Try IntelliJ's typical working directory
+                    f = new File("src/restaurantpos/images/jollibee_logo.png".replace("src/", ""));
+                }
+            }
+
+            // Try 5: Just try the images folder directly
+            if (!logoLoaded) {
+                File f = new File("images/jollibee_logo.png");
+                System.out.println("Trying images path: " + f.getAbsolutePath() + " (exists: " + f.exists() + ")");
+                if (f.exists()) {
+                    ImageIcon logoIcon = new ImageIcon(f.getAbsolutePath());
+                    Image scaledLogo = logoIcon.getImage().getScaledInstance(75, 75, Image.SCALE_SMOOTH);
+                    logoLabel.setIcon(new ImageIcon(scaledLogo));
+                    logoLoaded = true;
+                    System.out.println("Logo loaded from images path");
+                }
+            }
+
+            if (!logoLoaded) {
+                System.out.println("Could not load logo - file not found in any location");
             }
 
             // Create a new panel to hold logo and titlePanel side by side

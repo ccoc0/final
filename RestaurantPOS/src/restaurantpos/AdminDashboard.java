@@ -11,7 +11,7 @@ import javax.swing.border.*;
 
 /**
  * AdminDashboard - Admin panel for managing menu items and viewing buyer history
- * 
+ *
  * @author JollibeePOS
  */
 public class AdminDashboard extends javax.swing.JDialog {
@@ -211,15 +211,15 @@ public class AdminDashboard extends javax.swing.JDialog {
         menuTab.setLayout(new java.awt.BorderLayout(10, 10));
 
         menuTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object [][] {
 
-            },
-            new String [] {
-                "ID", "Name", "Category", "Price (P)", "Description", "Image Path"
-            }
+                },
+                new String [] {
+                        "ID", "Name", "Category", "Price (P)", "Description", "Image Path"
+                }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                    false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -344,15 +344,15 @@ public class AdminDashboard extends javax.swing.JDialog {
         historyTab.add(historyTopPanel, java.awt.BorderLayout.NORTH);
 
         historyTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object [][] {
 
-            },
-            new String [] {
-                "ID", "Buyer Name", "Items Ordered", "Total (P)", "Date", "Payment", "Status"
-            }
+                },
+                new String [] {
+                        "ID", "Buyer Name", "Items Ordered", "Total (P)", "Date", "Payment", "Status"
+                }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                    false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -411,27 +411,57 @@ public class AdminDashboard extends javax.swing.JDialog {
 
     private void loadLogo() {
         try {
-            // Try loading jollibee_logo.png from classpath
+            boolean logoLoaded = false;
+
+            // Try 1: Load from classpath
             java.net.URL logoUrl = getClass().getResource("/images/jollibee_logo.png");
             if (logoUrl != null) {
                 ImageIcon logoIcon = new ImageIcon(logoUrl);
                 Image scaledLogo = logoIcon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
                 logoLabel.setIcon(new ImageIcon(scaledLogo));
-            } else {
-                // Try loading from file system
+                logoLoaded = true;
+            }
+
+            // Try 2: NetBeans structure
+            if (!logoLoaded) {
                 File f = new File("src/restaurantpos/images/jollibee_logo.png");
                 if (f.exists()) {
                     ImageIcon logoIcon = new ImageIcon(f.getAbsolutePath());
                     Image scaledLogo = logoIcon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
                     logoLabel.setIcon(new ImageIcon(scaledLogo));
-                } else {
-                    // Fallback to admin_logo.png
-                    File f2 = new File("src/restaurantpos/images/admin_logo.png");
-                    if (f2.exists()) {
-                        ImageIcon logoIcon = new ImageIcon(f2.getAbsolutePath());
-                        Image scaledLogo = logoIcon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
-                        logoLabel.setIcon(new ImageIcon(scaledLogo));
-                    }
+                    logoLoaded = true;
+                }
+            }
+
+            // Try 3: IntelliJ structure
+            if (!logoLoaded) {
+                File f = new File("RestaurantPOS/src/restaurantpos/images/jollibee_logo.png");
+                if (f.exists()) {
+                    ImageIcon logoIcon = new ImageIcon(f.getAbsolutePath());
+                    Image scaledLogo = logoIcon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
+                    logoLabel.setIcon(new ImageIcon(scaledLogo));
+                    logoLoaded = true;
+                }
+            }
+
+            // Try 4: images folder directly
+            if (!logoLoaded) {
+                File f = new File("images/jollibee_logo.png");
+                if (f.exists()) {
+                    ImageIcon logoIcon = new ImageIcon(f.getAbsolutePath());
+                    Image scaledLogo = logoIcon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
+                    logoLabel.setIcon(new ImageIcon(scaledLogo));
+                    logoLoaded = true;
+                }
+            }
+
+            // Fallback to admin_logo.png
+            if (!logoLoaded) {
+                File f = new File("src/restaurantpos/images/admin_logo.png");
+                if (f.exists()) {
+                    ImageIcon logoIcon = new ImageIcon(f.getAbsolutePath());
+                    Image scaledLogo = logoIcon.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
+                    logoLabel.setIcon(new ImageIcon(scaledLogo));
                 }
             }
         } catch (Exception e) {
@@ -468,9 +498,9 @@ public class AdminDashboard extends javax.swing.JDialog {
     private void editMenuItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editMenuItemButtonActionPerformed
         if (selectedMenuItem == null) {
             JOptionPane.showMessageDialog(this,
-                "Please select a menu item to edit!",
-                "No Selection",
-                JOptionPane.WARNING_MESSAGE);
+                    "Please select a menu item to edit!",
+                    "No Selection",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
         MenuItemDialog dialog = new MenuItemDialog((java.awt.Frame) null, true, selectedMenuItem);
@@ -483,22 +513,22 @@ public class AdminDashboard extends javax.swing.JDialog {
     private void deleteMenuItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMenuItemButtonActionPerformed
         if (selectedMenuItem == null) {
             JOptionPane.showMessageDialog(this,
-                "Please select a menu item to delete!",
-                "No Selection",
-                JOptionPane.WARNING_MESSAGE);
+                    "Please select a menu item to delete!",
+                    "No Selection",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
         int confirm = JOptionPane.showConfirmDialog(this,
-            "Are you sure you want to delete '" + selectedMenuItem.getName() + "'?",
-            "Confirm Delete",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE);
+                "Are you sure you want to delete '" + selectedMenuItem.getName() + "'?",
+                "Confirm Delete",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
         if (confirm == JOptionPane.YES_OPTION) {
             if (dbHandler.deleteMenuItem(selectedMenuItem.getId())) {
                 JOptionPane.showMessageDialog(this,
-                    "Menu item deleted successfully!",
-                    "Success",
-                    JOptionPane.INFORMATION_MESSAGE);
+                        "Menu item deleted successfully!",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
                 selectedMenuItem = null;
                 loadMenuItems();
                 updateDashboard();
@@ -539,25 +569,25 @@ public class AdminDashboard extends javax.swing.JDialog {
                 writer.println("ID,Buyer Name,Items Ordered,Total Amount,Order Date,Payment Method,Status");
                 for (BuyerHistory record : buyerHistory) {
                     writer.println(String.format("%d,\"%s\",\"%s\",%.2f,\"%s\",\"%s\",\"%s\"",
-                        record.getId(),
-                        record.getBuyerName(),
-                        record.getItemsOrdered().replace("\"", "\"\""),
-                        record.getTotalAmount(),
-                        record.getOrderDate(),
-                        record.getPaymentMethod(),
-                        record.getStatus()
+                            record.getId(),
+                            record.getBuyerName(),
+                            record.getItemsOrdered().replace("\"", "\"\""),
+                            record.getTotalAmount(),
+                            record.getOrderDate(),
+                            record.getPaymentMethod(),
+                            record.getStatus()
                     ));
                 }
                 writer.close();
                 JOptionPane.showMessageDialog(this,
-                    "Data exported successfully!",
-                    "Export Complete",
-                    JOptionPane.INFORMATION_MESSAGE);
+                        "Data exported successfully!",
+                        "Export Complete",
+                        JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this,
-                    "Error exporting data: " + e.getMessage(),
-                    "Export Error",
-                    JOptionPane.ERROR_MESSAGE);
+                        "Error exporting data: " + e.getMessage(),
+                        "Export Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_exportButtonActionPerformed
@@ -608,50 +638,50 @@ public class AdminDashboard extends javax.swing.JDialog {
         menuItems = dbHandler.getAllMenuItems();
         updateMenuTable();
     }
-    
+
     private void updateMenuTable() {
         DefaultTableModel model = (DefaultTableModel) menuTable.getModel();
         model.setRowCount(0);
         for (MenuItem item : menuItems) {
             model.addRow(new Object[] {
-                item.getId(),
-                item.getName(),
-                item.getCategory(),
-                String.format("%.2f", item.getPrice()),
-                item.getDescription(),
-                item.getImagePath() != null ? item.getImagePath() : ""
+                    item.getId(),
+                    item.getName(),
+                    item.getCategory(),
+                    String.format("%.2f", item.getPrice()),
+                    item.getDescription(),
+                    item.getImagePath() != null ? item.getImagePath() : ""
             });
         }
     }
-    
+
     private void loadBuyerHistory() {
         buyerHistory = dbHandler.getAllBuyerHistory();
         updateHistoryTable();
     }
-    
+
     private void updateHistoryTable() {
         DefaultTableModel model = (DefaultTableModel) historyTable.getModel();
         model.setRowCount(0);
         for (BuyerHistory record : buyerHistory) {
             model.addRow(new Object[] {
-                record.getId(),
-                record.getBuyerName(),
-                record.getItemsOrdered(),
-                String.format("%.2f", record.getTotalAmount()),
-                record.getOrderDate(),
-                record.getPaymentMethod(),
-                record.getStatus()
+                    record.getId(),
+                    record.getBuyerName(),
+                    record.getItemsOrdered(),
+                    String.format("%.2f", record.getTotalAmount()),
+                    record.getOrderDate(),
+                    record.getPaymentMethod(),
+                    record.getStatus()
             });
         }
     }
-    
+
     private void updateDashboard() {
         double todaySales = dbHandler.getTotalSalesToday();
         totalSalesValue.setText(String.format("P%.2f", todaySales));
-        
+
         int todayOrders = dbHandler.getTotalOrdersToday();
         totalOrdersValue.setText(String.valueOf(todayOrders));
-        
+
         menuItemsCountValue.setText(String.valueOf(menuItems.size()));
     }
 }
